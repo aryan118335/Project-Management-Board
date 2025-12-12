@@ -5,7 +5,7 @@ let listsContainer = document.getElementById('lists-container');
 function createNewList() {
     let name = listNameInput.value;
 
-    // simple check to make sure name isn't empty
+    
     if (name.trim() === "") {
         return;
     }
@@ -13,7 +13,7 @@ function createNewList() {
     let card = document.createElement('div');
     card.className = 'todo-list-card';
 
-    // Header part
+  
     let header = document.createElement('h3');
     header.innerText = name;
 
@@ -28,7 +28,7 @@ function createNewList() {
     header.appendChild(closeBtn);
     card.appendChild(header);
 
-    // Input part for tasks
+   
     let inputDiv = document.createElement('div');
     inputDiv.className = 'input-group';
 
@@ -43,11 +43,11 @@ function createNewList() {
     inputDiv.appendChild(addTaskBtn);
     card.appendChild(inputDiv);
 
-    // List part
+
     let list = document.createElement('ul');
     card.appendChild(list);
 
-    // Function to add task
+   
     function addTask() {
         let text = taskInput.value;
         if (text.trim() === "") {
