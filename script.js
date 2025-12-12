@@ -1,79 +1,95 @@
-const listNameInput = document.getElementById("new-list-name");
-const createListBtn = document.getElementById("create-list-btn");
-const listsContainer = document.getElementById("lists-container");
+let listNameInput = document.getElementById('new-list-name');
+let createListBtn = document.getElementById('create-list-btn');
+let listsContainer = document.getElementById('lists-container');
 
-function createList() {
-  const listName = listNameInput.value.trim();
-  if (listName !== "") {
-    const listCard = document.createElement("div");
-    listCard.className = "todo-list-card";
+function createNewList() {
+    let name = listNameInput.value;
 
-    const title = document.createElement("h3");
-    title.textContent = listName;
+    // simple check to make sure name isn't empty
+    if (name.trim() === "") {
+        return;
+    }
 
-    const deleteListBtn = document.createElement("button");
-    deleteListBtn.textContent = "×";
-    deleteListBtn.className = "delete-list-btn";
-    deleteListBtn.onclick = function () {
-      listsContainer.removeChild(listCard);
-    };
-    title.appendChild(deleteListBtn);
+    let card = document.createElement('div');
+    card.className = 'todo-list-card';
 
-    const inputGroup = document.createElement("div");
-    inputGroup.className = "input-group";
+    // Header part
+    let header = document.createElement('h3');
+    header.innerText = name;
 
-    const taskInput = document.createElement("input");
-    taskInput.type = "text";
-    taskInput.placeholder = "Add task...";
+    let closeBtn = document.createElement('button');
+    closeBtn.innerText = '×';
+    closeBtn.className = 'delete-list-btn';
 
-    const addBtn = document.createElement("button");
-    addBtn.textContent = "+";
+    closeBtn.onclick = function () {
+        card.remove();
+    }
 
-    inputGroup.appendChild(taskInput);
-    inputGroup.appendChild(addBtn);
+    header.appendChild(closeBtn);
+    card.appendChild(header);
 
-    const ul = document.createElement("ul");
+    // Input part for tasks
+    let inputDiv = document.createElement('div');
+    inputDiv.className = 'input-group';
 
-    addBtn.onclick = function () {
-      const taskText = taskInput.value.trim();
-      if (taskText !== "") {
-        const li = document.createElement("li");
-        const span = document.createElement("span");
-        span.textContent = taskText;
+    let taskInput = document.createElement('input');
+    taskInput.type = 'text';
+    taskInput.placeholder = 'Add a task...';
 
-        const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "×";
-        deleteBtn.className = "delete-btn";
-        deleteBtn.onclick = function () {
-          ul.removeChild(li);
-        };
+    let addTaskBtn = document.createElement('button');
+    addTaskBtn.innerText = '+';
 
-        li.appendChild(span);
-        li.appendChild(deleteBtn);
-        ul.appendChild(li);
+    inputDiv.appendChild(taskInput);
+    inputDiv.appendChild(addTaskBtn);
+    card.appendChild(inputDiv);
+
+    // List part
+    let list = document.createElement('ul');
+    card.appendChild(list);
+
+    // Function to add task
+    function addTask() {
+        let text = taskInput.value;
+        if (text.trim() === "") {
+            return;
+        }
+
+        let item = document.createElement('li');
+
+        let span = document.createElement('span');
+        span.innerText = text;
+
+        let delBtn = document.createElement('button');
+        delBtn.innerText = '×';
+        delBtn.className = 'delete-btn';
+
+        delBtn.onclick = function () {
+            item.remove();
+        }
+
+        item.appendChild(span);
+        item.appendChild(delBtn);
+        list.appendChild(item);
+
         taskInput.value = "";
-      }
-    };
+    }
 
-    taskInput.addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        addBtn.click();
-      }
+    addTaskBtn.onclick = addTask;
+
+    taskInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            addTask();
+        }
     });
 
-    listCard.appendChild(title);
-    listCard.appendChild(inputGroup);
-    listCard.appendChild(ul);
-
-    listsContainer.appendChild(listCard);
+    listsContainer.appendChild(card);
     listNameInput.value = "";
-  }
 }
 
-createListBtn.addEventListener("click", createList);
+createListBtn.onclick = createNewList;
 
-listNameInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    createList();
-  }
+listNameInput.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        createNewList();
+    }
 });
