@@ -2,10 +2,7 @@ let listNameInput = document.getElementById('new-list-name');
 let createListBtn = document.getElementById('create-list-btn');
 let listsContainer = document.getElementById('lists-container');
 
-function createNewList() {
-    let name = listNameInput.value;
-
-    
+function createList(name) {
     if (name.trim() === "") {
         return;
     }
@@ -13,7 +10,6 @@ function createNewList() {
     let card = document.createElement('div');
     card.className = 'todo-list-card';
 
-  
     let header = document.createElement('h3');
     header.innerText = name;
 
@@ -28,7 +24,6 @@ function createNewList() {
     header.appendChild(closeBtn);
     card.appendChild(header);
 
-   
     let inputDiv = document.createElement('div');
     inputDiv.className = 'input-group';
 
@@ -43,11 +38,9 @@ function createNewList() {
     inputDiv.appendChild(addTaskBtn);
     card.appendChild(inputDiv);
 
-
     let list = document.createElement('ul');
     card.appendChild(list);
 
-   
     function addTask() {
         let text = taskInput.value;
         if (text.trim() === "") {
@@ -83,13 +76,21 @@ function createNewList() {
     });
 
     listsContainer.appendChild(card);
+}
+
+function handleCreateList() {
+    createList(listNameInput.value);
     listNameInput.value = "";
 }
 
-createListBtn.onclick = createNewList;
+createListBtn.onclick = handleCreateList;
 
 listNameInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
-        createNewList();
+        handleCreateList();
     }
 });
+
+createList("Todo");
+createList("In Progress");
+createList("Done");
