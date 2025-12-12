@@ -34,6 +34,21 @@ body {
 .header-container {
     margin-bottom: 20px;
     animation: fadeInSlide 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
 h1 {
@@ -45,7 +60,7 @@ h1 {
 }
 
 .tagline {
-    margin: 5px 0 0 0;
+    margin: 5px 0 0 63px;
     color: #5d6d7e;
     font-size: 1.1rem;
     font-style: italic;
