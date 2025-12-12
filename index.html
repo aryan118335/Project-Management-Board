@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Management Board</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-  </head>
-  <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js?v=2" defer></script>
+</head>
+
+<body>
     <div id="todo">
-      <h1>My Todo List</h1>
-      <div class="input-group">
-        <input type="text" id="todo-input" placeholder="Enter a new task..." />
-        <button id="add-btn">Add Todo</button>
-      </div>
-      <ul id="todo-list"></ul>
+        <h1>My Todo Lists</h1>
+        <div class="list-creation">
+            <input type="text" id="new-list-name" placeholder="New List Name...">
+            <button id="create-list-btn">Create List</button>
+        </div>
+        <div id="lists-container">
+
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
